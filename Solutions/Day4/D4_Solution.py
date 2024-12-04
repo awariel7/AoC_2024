@@ -68,21 +68,17 @@ print(f'Part1. Total: {xmas_counter_rows_cols + xmas_counter_diagonals}')
 
 # Part 2
 x_mas_counter = 0
-MAS_word_set = set('MAS')
+MAS_word_set = set('MS')
 # check diagonals
 # info for check
 n, k = len(lines), len(lines[0])
 for i in range(len(lines)):
     for j in range(len(lines[0])):
+        # start position "A"
         if lines[i][j] == 'A':
-            # start position "A"
-            check_word1 = ''
-            check_word2 = ''
             # if not out of the range
             if 0 <= i + 1 < n and 0 <= j + 1 < k and 0 <= i - 1 < n and 0 <= j - 1 < k:
-                check_word1 = lines[i + 1][j - 1] + 'A' + lines[i - 1][j + 1]
-                check_word2 = lines[i - 1][j - 1] + 'A' + lines[i + 1][j + 1]
                 # check each set with target
-                if set(check_word1) == MAS_word_set and set(check_word2) == MAS_word_set:
+                if set(lines[i + 1][j - 1]+lines[i - 1][j + 1]) == MAS_word_set and set(lines[i - 1][j - 1]+lines[i + 1][j + 1]) == MAS_word_set:
                     x_mas_counter += 1
 print(f'Part2. Total: {x_mas_counter}')
