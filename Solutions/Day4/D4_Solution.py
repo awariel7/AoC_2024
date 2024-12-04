@@ -21,6 +21,7 @@ for j in range(len(lines[0])):
         column += lines[i][j]
     rows_and_cols.append(column)
 # check diagonals
+# Maybe it is better to work with matrix in all directions?
 n, k = len(lines), len(lines[0])
 for i in range(len(lines)):
     for j in range(len(lines[0])):
