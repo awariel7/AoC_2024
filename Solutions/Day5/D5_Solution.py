@@ -1,6 +1,5 @@
 # read file
 with open("data.txt", "r") as file:
-    # create matrix from symbols
     lines = [line.rstrip() for line in file]
 rules = [r for r in lines[:lines.index('')]]
 pages = [[n for n in pg.split(',')] for pg in lines[lines.index('') + 1:]]
@@ -29,7 +28,6 @@ for p in pages:
     else:
         # collect all the incorrect pages for part 2
         incorrect_pages.append(p)
-
 print(f'Part 1: {res}')
 
 res_incorrect = 0
