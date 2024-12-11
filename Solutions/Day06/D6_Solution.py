@@ -63,13 +63,16 @@ def path_finder(cur_pos_x, cur_pos_y):
     return cur_pos_x, cur_pos_y, flag_continue
 
 # read file
-with open("data.txt", "r") as file:
+with open("test.txt", "r") as file:
     map = [[l for l in line.rstrip()] for line in file]
 # guard position
 cur_pos_x = 0
 cur_pos_y = 0
 # path set
 path_set = set()
+# path set w directions
+path_set_dir = set()
+possible_loop_counter = 0
 for i in range(len(map)):
     for j in range(len(map[i])):
         if map[i][j] == '^':
@@ -78,8 +81,11 @@ for i in range(len(map)):
             break
 print(cur_pos_x, cur_pos_y)
 flag_continue = True
+p_x, p_y = 0, 0
 while flag_continue:
-    # remember current pos in the set of tuples
+    if (cur_pos_x, cur_pos_y) in path_set and (p_x, p_y) != (cur_pos_x, cur_pos_y):
+        possible_loop_counter += 1
+    p_x, p_y = cur_pos_x, cur_pos_y
     path_set.add((cur_pos_x, cur_pos_y))
     cur_pos_x, cur_pos_y, flag_continue = path_finder(cur_pos_x, cur_pos_y)
 
@@ -87,4 +93,7 @@ while flag_continue:
 for m in map:
     print(*m)
 print(len(path_set))
+# Part 2
+print(possible_loop_counter)
+print(path_set_dir)
 
